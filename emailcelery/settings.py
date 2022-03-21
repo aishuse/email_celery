@@ -148,3 +148,18 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER ='booklandz911@gmail.com'
 EMAIL_HOST_PASSWORD = "zrrlxdirzbmdbloo"
 DEFAULT_FROM_EMAIL = 'Celery <booklandz911@gmail.com>'
+
+BROKER_TRANSPORT = 'sqs'
+BROKER_TRANSPORT_OPTIONS = {
+    'region': 'us-east-1',
+}
+BROKER_USER = 'AKIA2XJHCOCGWYCCYP6K'
+BROKER_PASSWORD = 'lEWgwD3W4dbpbdO1jgBCiwFk280EFpoivdTulFZG'
+
+CELERY_DEFAULT_QUEUE = 'celery-myapp-production'
+CELERY_QUEUES = {
+    CELERY_DEFAULT_QUEUE: {
+        'exchange': CELERY_DEFAULT_QUEUE,
+        'binding_key': CELERY_DEFAULT_QUEUE,
+    }
+}
