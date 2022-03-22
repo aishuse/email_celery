@@ -127,14 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-# CELERY SETTINGS
-
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Kolkata'
-CELERY_RESULT_BACKEND = 'django-db'
 
 
 #CELERY BEAT
@@ -149,17 +141,43 @@ EMAIL_HOST_USER ='booklandz911@gmail.com'
 EMAIL_HOST_PASSWORD = "zrrlxdirzbmdbloo"
 DEFAULT_FROM_EMAIL = 'Celery <booklandz911@gmail.com>'
 
-BROKER_TRANSPORT = 'sqs'
-BROKER_TRANSPORT_OPTIONS = {
-    'region': 'us-east-1',
-}
-BROKER_USER = 'AKIA2XJHCOCGWYCCYP6K'
-BROKER_PASSWORD = 'lEWgwD3W4dbpbdO1jgBCiwFk280EFpoivdTulFZG'
+# CELERY SETTINGS
 
-CELERY_DEFAULT_QUEUE = 'celery-myapp-production'
-CELERY_QUEUES = {
-    CELERY_DEFAULT_QUEUE: {
-        'exchange': CELERY_DEFAULT_QUEUE,
-        'binding_key': CELERY_DEFAULT_QUEUE,
-    }
+# CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'Asia/Kolkata'
+# CELERY_RESULT_BACKEND = 'django-db'
+
+#
+CELERY_BROKER_URL = "sqs://"
+CELERY_TASK_DEFAULT_QUEUE = "CeleryBroker"
+CELERY_TASK_CREATE_MISSING_QUEUES: bool = False
+CELERY_WORKER_ENABLE_REMOTE_CONTROL: bool = False
+CELERY_WORKER_SEND_TASK_EVENTS: bool = False
+CELERY_BROKER_USER = 'AKIA2XJHCOCGWYCCYP6K'
+CELERY_BROKER_PASSWORD = 'lEWgwD3W4dbpbdO1jgBCiwFk280EFpoivdTulFZG'
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    "predefined_queues": {
+        "CeleryBroker": {
+            "url": "https://sqs.us-east-1.amazonaws.com/737205710989/CeleryBroker",
+        },
+    },
 }
+
+
+# CELERY_BROKER_TRANSPORT = 'sqs'
+# CELERY_BROKER_TRANSPORT_OPTIONS = {
+#     'region': 'us-east-1',
+# }
+# CELERY_BROKER_USER = 'AKIA2XJHCOCGWYCCYP6K'
+# CELERY_BROKER_PASSWORD = 'lEWgwD3W4dbpbdO1jgBCiwFk280EFpoivdTulFZG'
+#
+# CELERY_DEFAULT_QUEUE = 'CeleryBroker'
+# CELERY_QUEUES = {
+#     CELERY_DEFAULT_QUEUE: {
+#         'exchange': CELERY_DEFAULT_QUEUE,
+#         'binding_key': CELERY_DEFAULT_QUEUE,
+#     }
+# }
