@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+{%extends 'send_mail/base.html'%}
+
+
+{% block body_block %}
+
+
+<div class="container ms-5 mt-5">
+
+    <h1 style="color:white">Emails send to valid addresses.</h1>
+    <br>
+    <br> 
+        <h2 style="color: white">Valid email address are</h2>
+
+    <div style="color:white">
+
+        <ol>
+            {% for ad in vemails %}
+            <li>
+                {{ad}}
+
+            </li>
+            {%endfor%}
+        </ol>
+
+
+    </div>
+    <h2 style="color: white">Invalid email address are</h2>
+    <div style="color:white">
+
+        <ol>
+            {% for ad in invalidemails %}
+            <li>
+                {{ad}}
+
+            </li>
+            {%endfor%}
+        </ol>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}
