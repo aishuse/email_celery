@@ -1,14 +1,5 @@
-
-#Use the Python3.7.2 container image
-
-
-#Copy the current directory contents into the container.
-COPY . /usr/src/app   
-
-#Set the working directory to /usr/src/app
+FROM python:3
+ENV PYTHONUNBUFFERED=1
 WORKDIR /usr/src/app
-
-#Install the dependencies
+COPY requirements.txt ./
 RUN pip install -r requirements.txt
-
-RUN python manage.py collectstatic --noinput
